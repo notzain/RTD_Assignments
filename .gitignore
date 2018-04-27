@@ -30,3 +30,11 @@
 *.exe
 *.out
 *.app
+
+# clion stuff
+.idea/*
+cmake-build-debug/*
+
+# UML xml stuff
+*.xmi
+*.xml

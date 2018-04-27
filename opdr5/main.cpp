@@ -3,9 +3,10 @@
 //
 
 #include <iostream>
+#include "lib_test/util.h"
 
 int main()
 {
-    std::cout << "opdr5";
+    util::sayHello();
     return 0;
 }

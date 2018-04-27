@@ -3,4 +3,11 @@ project(opdr5)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(opdr5 main.cpp main.cpp)
+include_directories(lib_test)
+link_directories(lib_test)
+
+add_subdirectory(lib_test)
+
+add_executable(opdr5 main.cpp)
+target_link_libraries(opdr5 lib_test)
+

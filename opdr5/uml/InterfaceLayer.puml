@@ -1,0 +1,12 @@
+@startuml
+
+package InterfaceLayer{
+package Main {}
+package UI {
+    class MainWindow
+
+}
+}
+
+
+@enduml

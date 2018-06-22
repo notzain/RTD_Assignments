@@ -5,27 +5,29 @@
 #include <iostream>
 #include <memory>
 
+#include "lib_domain/Match.h"
+#include "lib_domain/Robot.h"
+
+#include "lib_domainfactory/SimpleDomainFactory.h"
+
 #include "lib_util/IObserver.h"
 #include "lib_util/Subject.h"
 
-class MySubject : public util::Subject {
+#include "lib_ui/MainWindow.h"
 
-};
+int main() {
 
-class MyObserver : public util::IObserver {
-public:
-    void update(util::Subject *subject) override {
-        std::cout << "Received update" << std::endl;
-    }
-};
+    Ui::MainWindow window;
 
-int main()
-{
-    auto subject = std::make_unique<MySubject>();
-    auto observer = std::make_unique<MyObserver>();
+    DomainFactory::SimpleDomainFactory factory;
 
-    subject->attach(observer.get());
-    subject->notify();
+    auto robot = factory.makeRobot();
+
+    auto match = factory.makeMatch(robot);
+
+    dynamic_cast<Domain::Robot*>(robot.get())->attach(&window);
+
+    match->run();
 
     return 0;
 }

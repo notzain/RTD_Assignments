@@ -1,0 +1,27 @@
+@startuml
+skinparam dpi 300
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+
+!include InterfaceLayer.puml
+!include UtilityLayer.puml
+!include DomainLayer.puml
+
+InterfaceLayer ..> DomainLayer
+DomainLayer .> UtilityLayer
+
+MainWindow --|> IObserver
+Robot --|> Subject
+
+MainWindow -> IRobot
+
+State .> Domain
+
+Match <-- SimpleDomainFactory
+Robot <-- SimpleDomainFactory
+
+Main -> IDomainFactory
+
+
+
+@enduml

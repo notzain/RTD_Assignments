@@ -5,7 +5,6 @@
 #ifndef PROJECT_SUBJECT_H
 #define PROJECT_SUBJECT_H
 
-
 #include <vector>
 #include <memory>
 
@@ -28,6 +27,5 @@ namespace util {
         virtual void detach(IObserver *observer);
     };
 }
-
 
 #endif //PROJECT_SUBJECT_H

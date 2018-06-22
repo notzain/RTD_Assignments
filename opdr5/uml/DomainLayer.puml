@@ -1,0 +1,78 @@
+@startuml
+!pragma horizontalLineBetweenDifferentPackageAllowed
+
+package DomainLayer {
+
+package Domain {
+
+    interface IRobot {
+        + start()
+        + stop()
+        + find()
+        + win()
+        + lose()
+        + setState(state : IRobotState)
+        + state() : string
+    }
+
+
+    IRobot <|-- Robot
+
+    interface IMatch {
+        + run()
+    }
+
+    IMatch <|-- Match
+
+    IRobot - IMatch
+
+} /' End of Domain Package '/
+
+package DomainFactory {
+    interface IDomainFactory {
+        + {abstract} makeRobot()
+        + {abstract} makeMatch(robot : IRobot
+    }
+
+    IDomainFactory <|-- SimpleDomainFactory
+
+} /' End of DomainFactory package '/
+
+package State {
+    interface IRobotState {
+        + {abstract} start(robot : IRobot)
+        + {abstract} stop(robot : IRobot)
+        + {abstract} find(robot : IRobot)
+        + {abstract} win(robot : IRobot)
+        + {abstract} lose(robot : IRobot)
+        + {abstract} state() : string
+    }
+
+    class IRobotRoamState {
+        - stateName : string
+    }
+    class IRobotAttackState {
+        - stateName : string
+    }
+
+    class IRobotFinishState {
+        - stateName : string
+    }
+
+    class IRobotLoseState {
+        - stateName : string
+    }
+
+    IRobotState <|-- IRobotRoamState
+    IRobotState <|-- IRobotAttackState
+    IRobotState <|-- IRobotLoseState
+    IRobotState <|-- IRobotFinishState
+
+} /' End of State package '/
+
+
+} /' End of DomainLayer package '/
+
+IRobotState -* IRobot
+
+@enduml

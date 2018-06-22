@@ -1,0 +1,19 @@
+@startuml
+package UtilityLayer {
+package Observer {
+    interface IObserver {
+        + {abstract} update(subject : Subject)
+    }
+
+    class Subject {
+        + notify()
+        + add(observer : IObserver)
+        + remove(observer : IObserver)
+    }
+
+} /' End of Observer package '/
+} /' End of UtilityLayer package '/
+
+IObserver --> Subject
+
+@enduml
